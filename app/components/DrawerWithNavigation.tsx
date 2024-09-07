@@ -11,16 +11,17 @@ import {
   ListItemSuffix,
   Chip,
 } from "@material-tailwind/react";
+import clsx from 'clsx';
+import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 import { useAppSelector, useAppDispatch, useAppStore } from '../redux/hook';
 import { updateDrawer } from "../redux/features/drawer/drawerSlice";
-import Link from 'next/link'
  
 export default function DrawerWithNavigation() {
     const open = useAppSelector((state) => state.drawer.open);
     const dispatch = useAppDispatch();
-    // const [open, setOpen] = React.useState(false);
-    
-    // const openDrawer = () => setOpen(true);
+    const pathname = usePathname();
+
     const closeDrawer = () => {
         console.log('closeDrawer before func ',open)
         dispatch(updateDrawer(false));
@@ -69,7 +70,15 @@ export default function DrawerWithNavigation() {
                 />
               </svg>
             </ListItemPrefix>
-            <Link href="/" onClick={closeDrawer}>Home</Link>
+            <Link 
+              href="/" 
+              onClick={closeDrawer}
+              className={clsx(
+                {
+                  'bg-sky-100 text-orange-600': pathname === "/",
+                },
+              )}
+            >Home</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -86,7 +95,15 @@ export default function DrawerWithNavigation() {
                 />
               </svg>
             </ListItemPrefix>
-            <Link href="/dashboard" onClick={closeDrawer}>Dashboard</Link>
+            <Link 
+              href="/dashboard" 
+              onClick={closeDrawer}
+              className={clsx(
+                {
+                  'bg-sky-100 text-orange-600': pathname === "/dashboard",
+                },
+              )}
+            >Dashboard</Link>
           </ListItem>
           <ListItem>
             <ListItemPrefix>
@@ -103,7 +120,15 @@ export default function DrawerWithNavigation() {
                 />
               </svg>
             </ListItemPrefix>
-            <Link href="/dashboard/orders" onClick={closeDrawer}>Orders</Link>
+            <Link 
+              href="/dashboard/orders" 
+              onClick={closeDrawer}
+              className={clsx(
+                {
+                  'bg-sky-100 text-orange-600': pathname === "/dashboard/orders",
+                },
+              )}
+            >Orders</Link>
             <ListItemSuffix>
               <Chip
                 value="5"
