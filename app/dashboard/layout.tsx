@@ -1,4 +1,4 @@
-import SidebarWithLogo from './ui/dashboard/sidenav';
+// import SidebarWithLogo from './ui/dashboard/sidenav';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
