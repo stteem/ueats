@@ -6,7 +6,7 @@ import {
     fetchBeefCombo, fetchGoatmeatCombo, 
     fetchBeef, fetchChickenWings, fetchGoatmeat 
 } from './lib/data';
-// import AlertDismissible from "./ui/Alert";
+// import NotificationDialog from "./ui/Notification";
 
 
 export default async function Home() {
@@ -17,10 +17,7 @@ export default async function Home() {
   const goatmeatCombo = await fetchGoatmeatCombo();
   const beef = await fetchBeef();
   const chickenWings = await fetchChickenWings();
-  const goatmeat = await fetchGoatmeat();
-
-  console.log({menu})
-  
+  const goatmeat = await fetchGoatmeat();  
 
   return (
     <div className="w-full">
@@ -28,7 +25,7 @@ export default async function Home() {
         <CarouselDefault />
       </div>
       {/* <div>
-        <AlertDismissible />
+        <NotificationDialog />
       </div> */}
       <div className='bg-blue-gray-50'>
         <MenuView menuItems={menu} title={"Jollof Menu"}/>

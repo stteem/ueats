@@ -20,7 +20,7 @@ export function CarouselDefault() {
   useEffect(() => {
     // console.log(`Carousel changed to slide ${activeIndex}`);
     dispatch(updateCarousel(activeIndex));
-  }, [activeIndex]);
+  }, [activeIndex, dispatch]);
   
   return (
     <Carousel 
