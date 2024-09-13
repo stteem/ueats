@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import StoreProvider from './StoreProvider';
 import "./globals.css";
-import { ThemeProvider } from './components/MaterialTailwindWrapper';
-import NavbarDefault from "./components/Navbar"
-import DrawerWithNavigation from "./components/DrawerWithNavigation";
+import { ThemeProvider } from './ui/MaterialTailwindWrapper';
+import NavbarDefault from "./ui/Navbar"
+import DrawerWithNavigation from "./ui/DrawerWithNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,16 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+    <StoreProvider>
       <ThemeProvider>
-        <StoreProvider>
-          <DrawerWithNavigation />
-          <NavbarDefault />
+        <html lang="en">
+          <body className={inter.className}>
+            <NavbarDefault />
+            <DrawerWithNavigation />
             {children}
-        </StoreProvider>
+          </body>
+        </html>
       </ThemeProvider>
-      </body>
-    </html>
+    </StoreProvider>
   );
 }

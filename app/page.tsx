@@ -1,40 +1,57 @@
-'use client';
-import { Button } from './components/MaterialTailwindWrapper';
-// import { Button } from "@material-tailwind/react";
-import Image from "next/image";
-import { CarouselDefault } from './components/Carousel';
+// 'use client';
+import { CarouselDefault } from './ui/Carousel';
+import MenuView from './ui/MenuView';
+import { 
+    fetchMenu, fetchChickenCombo, 
+    fetchBeefCombo, fetchGoatmeatCombo, 
+    fetchBeef, fetchChickenWings, fetchGoatmeat 
+} from './lib/data';
+// import AlertDismissible from "./ui/Alert";
 
-export default function Home() {
 
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
+export default async function Home() {
+
+  const menu = await fetchMenu();
+  const chickenCombo = await fetchChickenCombo();
+  const beefCombo = await fetchBeefCombo();
+  const goatmeatCombo = await fetchGoatmeatCombo();
+  const beef = await fetchBeef();
+  const chickenWings = await fetchChickenWings();
+  const goatmeat = await fetchGoatmeat();
+
+  console.log({menu})
+  
 
   return (
     <div className="w-full">
       <div className="flex relative justify-center items-center">
-        {/* <Image
-          src="/house-309156_19203.png"
-          alt="Shopfront"
-          className="dark:invert"
-          width={2000}
-          height={24}
-          priority
-        /> */}
         <CarouselDefault />
-        {/* <Image
-          src="/logo3.png"
-          alt="Logo"
-          className="hidden sm:block absolute top-5 left-8 dark:invert"
-          width={130}
-          height={50}
-          priority
-          // sizes="(max-width: 768px) 100px, 200px"
-        /> */}
       </div>
-      <div className="flex relative justify-center items-center">
-        
+      {/* <div>
+        <AlertDismissible />
+      </div> */}
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={menu} title={"Jollof Menu"}/>
       </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={chickenCombo} title={"Chicken Combos"}/>
+      </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={beefCombo} title={"Beef Combos"}/>
+      </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={goatmeatCombo} title={"Goatmeat Combos"}/>
+      </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={beef} title={"Beef"}/>
+      </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={chickenWings} title={"Chicken Wings"}/>
+      </div>
+      <div className='bg-blue-gray-50'>
+        <MenuView menuItems={goatmeat} title={"Goatmeat"}/>
+      </div>
+      
     </div>
   );
 }

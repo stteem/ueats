@@ -1,13 +1,26 @@
 'use client';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Provider } from 'react-redux';
-import { ueatsStore, AppStore } from './redux/store';
+import type { AppStore } from './redux/store';
+import { makeStore } from './redux/store';
+import { setupListeners } from "@reduxjs/toolkit/query";
+
 
 export default function StoreProvider({ children }: { children: React.ReactNode }) {
-  const storeRef = useRef<AppStore>();
+  const storeRef = useRef<AppStore | null>(null);
   if (!storeRef.current) {
     // Create the store instance the first time this renders
-    storeRef.current = ueatsStore();
+    storeRef.current = makeStore();
   }
+
+  useEffect(() => {
+    if (storeRef.current != null) {
+      // configure listeners using the provided defaults
+      // optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
+      const unsubscribe = setupListeners(storeRef.current.dispatch);
+      return unsubscribe;
+    }
+  }, []);
+  
   return <Provider store={storeRef.current}>{children}</Provider>;
 }

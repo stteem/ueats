@@ -7,9 +7,9 @@ const users = [
       email: 'user@nextmail.com',
       password: '123456',
     },
-  ];
+];
   
-  const customers = [
+const customers = [
     {
       id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
       name: 'Evil Rabbit',
@@ -46,9 +46,9 @@ const users = [
       email: 'balazs@orban.com',
       image_url: '/customers/balazs-orban.png',
     },
-  ];
+];
   
-  const invoices = [
+const invoices = [
     {
       customer_id: customers[0].id,
       amount: 15795,
@@ -127,9 +127,9 @@ const users = [
       status: 'paid',
       date: '2022-06-05',
     },
-  ];
+];
   
-  const revenue = [
+const revenue = [
     { month: 'Jan', revenue: 2000 },
     { month: 'Feb', revenue: 1800 },
     { month: 'Mar', revenue: 2200 },
@@ -144,24 +144,27 @@ const users = [
     { month: 'Dec', revenue: 4800 },
 ];
 
-const menu = [
+const menus = [
     {
         name: 'Jollof', 
-        price: 'Ghc30', 
+        price: 30, 
+        currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8139.jpg'
     },
     {
         name: 'Spicy Jollof', 
-        price: 'Ghc30', 
+        price: 30, 
+        currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8180-ai1.png'
     },
     {
         name: 'Assorted Jollof', 
-        price: 'Ghc85', 
+        price: 85, 
+        currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8144.png'
     },
 ]
 
@@ -169,76 +172,76 @@ const chickenwings = [
     {
         name: 'Chicken wings',
         quantity:'10 pieces',
-        price: '85',
+        price: 85,
         currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8135.jpg'
     },
     {
         name: 'Chicken wings',
         quantity:'6 pieces',
-        price: '51',
+        price: 51,
         currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8222-single.png'
     },
     {
         name: 'Chicken wings', 
         quantity:'4 pieces',
-        price: '34', 
+        price: 34, 
         currency: 'Ghc',
         description: '',
-        image: ''
+        image_url: '/IMG_8237.jpg'
     },
     
 ]
 
-const beef = [
+const beefs = [
     {
         name: 'Beef', 
-        price: '60',
+        price: 60,
         currency: 'Ghc', 
         quantity:'10 pieces',
         description: '',
-        image: ''
+        image_url: '/IMG_8292-standard.png'
     },
     {
         name: 'Beef', 
-        price: '50',
+        price: 50,
         currency: 'Ghc',
         quantity:'6 pieces',
         description: '',
-        image: ''
+        image_url: '/IMG_8292-standard.png'
     },
 ]
 
-const goatmeat = [
+const goatmeats = [
     {
         name: 'Goat meat', 
         quantity:'8 pieces',
-        price: '60',
+        price: 60,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/IMG_8252.jpg'
     },
     {
         name: 'Goat meat', 
         quantity:'5 pieces',
-        price: '45',
+        price: 45,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/IMG_8252.jpg'
     }, 
 ]
 
-const goatmeat_combo = [
+const goatmeat_combos = [
     {
         name: 'Jollof + Goat meat', 
         quantity:'6 pieces',
-        price: '79',
+        price: 79,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/beef-combo.jpg'
     },
     {
         name: 'Spicy Jollof + Goat meat', 
@@ -246,62 +249,62 @@ const goatmeat_combo = [
         price: '79',
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/beef-combo.jpg'
     }, 
 ]
 
-const beef_combo = [
+const beef_combos = [
     {
         name: 'Jollof + Beef', 
         quantity:'6 pieces',
-        price: '74',
+        price: 74,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/beef-combo.jpg'
     },
     {
         name: 'Spicy Jollof + Beef', 
         quantity:'6 pieces',
-        price: '74',
+        price: 74,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/beef-combo.jpg'
     }, 
 ]
 
-const chicken_combo = [
+const chicken_combos = [
     {
         name: 'Jollof + Chicken wings', 
         quantity:'6 pieces',
-        price: '80',
+        price: 80,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/chicken-combo.jpg'
     },
     {
         name: 'Spicy Jollof + Chicken wings', 
         quantity:'6 pieces',
-        price: '80',
+        price: 80,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/chicken-combo.jpg'
     },
     {
         name: 'Jollof + Chicken wings + 2 Fried eggs', 
         quantity:'3 pieces',
-        price: '67',
+        price: 67,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/IMG_8155-single.png'
     }, 
     {
         name: 'Spicy Jollof + Chicken wings + 2 Fried eggs', 
         quantity:'3 pieces',
-        price: '67',
+        price: 67,
         currency: 'Ghc', 
         description: '',
-        image: ''
+        image_url: '/IMG_8155-single.png'
     }, 
 ]
   
-export { users, customers, invoices, revenue, menu, chicken_combo, beef_combo, goatmeat_combo, goatmeat, beef, chickenwings,  };
+export { users, customers, invoices, revenue, menus, chicken_combos, beef_combos, goatmeat_combos, goatmeats, beefs, chickenwings,  };
