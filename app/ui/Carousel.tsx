@@ -27,7 +27,7 @@ export function CarouselDefault() {
       autoplay={true} 
       loop={true} 
       className="rounded-xl"
-      activeIndex={activeIndex}
+      // activeIndex={activeIndex}
     >
       <img
         src="/carousel1.svg"

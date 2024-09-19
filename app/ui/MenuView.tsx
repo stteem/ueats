@@ -1,9 +1,10 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import EcommerceCard  from './MenuCard'
 import { useAppSelector, useAppDispatch } from '../redux/hook';
 import { Menu } from "../lib/definitions";
 import { selectCarouselStatus } from "../redux/features/carousel/carouselSlice";
+import { selectMenu, updateMenu } from "../redux/features/menu/menuSlice";
 
 
 
@@ -12,9 +13,14 @@ interface MenuViewProps {
     title: string;
 }
 
-const MenuView: React.FC<MenuViewProps> = ({menuItems, title}) => {
+const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
 
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(updateMenu(menuItems));
+    }, [menuItems, dispatch]);
     const active = useAppSelector(selectCarouselStatus);
+    
 
     const getTitleColor = () => {
         switch (active) {
@@ -28,9 +34,6 @@ const MenuView: React.FC<MenuViewProps> = ({menuItems, title}) => {
                 return '#ff9045'; // Default color if active is not 0, 1, or 2
         }
     };
-
-    // alert("The Ueats app is under development, please check back in about 1 month's time for our full offerings. Click 'Ok' to see what we've built so far.")
-
 
     return(
         <div className="menu-container">
@@ -50,6 +53,6 @@ const MenuView: React.FC<MenuViewProps> = ({menuItems, title}) => {
             </div>
         </div>
     )
-}
-
+})
+MenuView.displayName = 'MenuView';
 export default MenuView;

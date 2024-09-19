@@ -24,28 +24,25 @@ export default async function Home() {
       <div className="flex relative justify-center items-center">
         <CarouselDefault />
       </div>
-      {/* <div>
-        <NotificationDialog />
-      </div> */}
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={menu} title={"Jollof Menu"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg3.png')" }}>
         <MenuView menuItems={chickenCombo} title={"Chicken Combos"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={beefCombo} title={"Beef Combos"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg3.png')" }}>
         <MenuView menuItems={goatmeatCombo} title={"Goatmeat Combos"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={beef} title={"Beef"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg3.png')" }}>
         <MenuView menuItems={chickenWings} title={"Chicken Wings"}/>
       </div>
-      <div className='bg-blue-gray-50'>
+      <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={goatmeat} title={"Goatmeat"}/>
       </div>
       

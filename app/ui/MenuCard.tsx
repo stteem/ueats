@@ -11,9 +11,14 @@ import { Menu } from '../lib/definitions';
 
    
 const EcommerceCard: React.FC<Menu> = ({image_url, name, currency, price, description}) => {
-    return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
+  
+  const getTitleColor = () => {
+    return '#ff9045';  
+  };
+  
+  return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
       <Card className="w-96 sm:w-1/2 md:w-1/3 lg:w-1/4">
-        <CardHeader shadow={false} floated={false} className="h-64 sm:h-auto md:h-72 lg:h-72">
+        <CardHeader shadow={false} floated={false} className="h-48 sm:h-48 md:h-72 lg:h-72">
           <img
             src={image_url}
             alt="card-image"
@@ -21,11 +26,13 @@ const EcommerceCard: React.FC<Menu> = ({image_url, name, currency, price, descri
           />
         </CardHeader>
         <CardBody>
-          <div className="mb-2 flex items-center justify-between">
-            <Typography color="blue-gray" className="font-medium">
+          <div className="mb-2 flex items-center justify-between" style={{ color: getTitleColor() }}>
+            <Typography className="font-medium whitespace-normal break-words">
               {name}
             </Typography>
-            <Typography color="blue-gray" className="font-medium">
+          </div>
+          <div className="mb-2 flex items-center justify-between" style={{ color: getTitleColor() }}>
+            <Typography className="font-bold">
               {currency}{price}
             </Typography>
           </div>

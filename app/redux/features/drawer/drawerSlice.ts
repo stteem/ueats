@@ -1,5 +1,5 @@
-// import { createSlice } from '@reduxjs/toolkit';
-import { createAppSlice } from "../../createAppSlice";
+import { createSlice } from '@reduxjs/toolkit';
+// import { createAppSlice } from "../../createAppSlice";
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface DrawerState {
@@ -10,16 +10,14 @@ const initialState: DrawerState = {
   open: false,
 };
 
-export const drawerSlice = createAppSlice({
+export const drawerSlice = createSlice({
   name: 'drawer',
   initialState,
-  reducers: (create) => ({
-    updateDrawer: create.reducer(
-      (state, action: PayloadAction<boolean>) => {
-        state.open = action.payload;
-      },
-    ),
-  }),
+  reducers: {
+    updateDrawer: (state, action: PayloadAction<boolean>) => {
+      state.open = action.payload;
+    },
+  },
   selectors: {
     selectStatus: (drawer) => drawer.open,
   },
