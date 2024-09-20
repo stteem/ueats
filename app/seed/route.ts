@@ -231,21 +231,23 @@ async function seedChickenWings() {
 
 
 export async function GET() {
-  try {
-    await client.sql`BEGIN`;
-    await seedMenu();
-    await seedBeef();
-    await seedUsers();
-    await seedGoatmeat();
-    await seedChickenCombos();
-    await seedBeefCombos();
-    await seedGoatmeatCombos();
-    await seedChickenWings();
-    await client.sql`COMMIT`;
+    return Response.json({ message: 'GET called successfully' });
 
-    return Response.json({ message: 'Database seeded successfully' });
-  } catch (error) {
-    await client.sql`ROLLBACK`;
-    return Response.json({ error }, { status: 500 });
-  }
+    // try {
+    //     await client.sql`BEGIN`;
+    //     await seedMenu();
+    //     await seedBeef();
+    //     await seedUsers();
+    //     await seedGoatmeat();
+    //     await seedChickenCombos();
+    //     await seedBeefCombos();
+    //     await seedGoatmeatCombos();
+    //     await seedChickenWings();
+    //     await client.sql`COMMIT`;
+
+    //     return Response.json({ message: 'Database seeded successfully' });
+    // } catch (error) {
+    //     await client.sql`ROLLBACK`;
+    //     return Response.json({ error }, { status: 500 });
+    // }
 }
