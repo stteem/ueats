@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { menuSlice } from './features/menu/menuSlice';
 import { drawerSlice } from './features/drawer/drawerSlice';
 import { carouselSlice } from "./features/carousel/carouselSlice";
+import { cartSlice } from './features/cart/cartSlice';
 
 
 
@@ -11,6 +12,7 @@ export const makeStore = () => {
       [menuSlice.name]: menuSlice.reducer,
       [drawerSlice.name]: drawerSlice.reducer,
       [carouselSlice.name]: carouselSlice.reducer,
+      [cartSlice.name]: cartSlice.reducer,
     },
     // devTools: process.env.NODE_ENV !== 'production',
   });

@@ -26,7 +26,7 @@ export function CarouselDefault() {
     <Carousel 
       autoplay={true} 
       loop={true} 
-      className="rounded-xl"
+      className="rounded-none"
       // activeIndex={activeIndex}
     >
       <img

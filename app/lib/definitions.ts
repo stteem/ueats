@@ -10,7 +10,7 @@ export type User = {
 };
 
 export type Menu = {
-    id?: string;
+    id: string;
     name: string;
     price: number; 
     currency: string;
@@ -19,6 +19,7 @@ export type Menu = {
 };
 
 export type ChickenWings = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;
@@ -28,6 +29,7 @@ export type ChickenWings = {
 };
 
 export type Beef = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;
@@ -37,6 +39,7 @@ export type Beef = {
 };
 
 export type Goatmeat = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;
@@ -46,6 +49,7 @@ export type Goatmeat = {
 };
 
 export type GoatmeatCombo = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;
@@ -55,6 +59,7 @@ export type GoatmeatCombo = {
 };
 
 export type BeefCombo = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;
@@ -64,6 +69,7 @@ export type BeefCombo = {
 };
 
 export type ChickenCombo = {
+    id: string;
     name: string;
     price: number; 
     quantity: string;

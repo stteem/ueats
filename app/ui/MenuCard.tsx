@@ -11,15 +11,17 @@ import {
     Button,
 } from "@material-tailwind/react";
 import { Menu } from '../lib/definitions';
-// import { InformationCircleIcon } from '@heroicons/react/outline';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import { updateCart } from "../redux/features/cart/cartSlice";
+import { useAppDispatch } from "../redux/hook";
 
 
    
-const EcommerceCard: React.FC<Menu> = ({image_url, name, currency, price, description}) => {
+const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, description}) => {
   
   const [maxLength, setMaxLength] = useState(10);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const updateMaxLength = () => {
@@ -147,6 +149,10 @@ const EcommerceCard: React.FC<Menu> = ({image_url, name, currency, price, descri
             style={{ 
               backgroundColor: currencyColor(),
               color: '#ffffff'
+            }}
+            onClick={() => {
+              console.log(`Add ${id} to Cart`) 
+              dispatch(updateCart(id))
             }}
           >
             Add to Cart

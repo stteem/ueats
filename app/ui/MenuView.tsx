@@ -48,6 +48,7 @@ const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
                         currency={menu.currency}
                         description={menu.description}
                         image_url={menu.image_url}
+                        id={menu.id}
                     />
                 ))}
             </div>
