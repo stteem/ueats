@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Typography,
@@ -23,11 +23,29 @@ export default function NavbarDefault() {
     console.log('open after func ',open)
   }
  
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
+  }, []);
+
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
  
 //   const navList = (
@@ -129,7 +147,10 @@ export default function NavbarDefault() {
 //   );
  
   return (
-    <Navbar className="mx-auto px-4 py-2 lg:px-8 lg:py-4 rounded-none">
+    <Navbar className={`mx-auto h-[60px] sm:h-[80px] px-4 py-2 lg:px-8 lg:py-4 rounded-none flex items-center sticky top-0 z-10 transition-all duration-300 ${
+        isSticky ? 'bg-white shadow-md' : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
