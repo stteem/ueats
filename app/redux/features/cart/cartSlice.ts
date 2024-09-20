@@ -18,6 +18,10 @@ export const cartSlice = createSlice({
         // If it's not in the array, add it
         state.ids.push(action.payload);
       }
+      else {
+         // If it's already in the array, remove it
+        state.ids = state.ids.filter(id => id !== action.payload);
+      }
     },
   },
   selectors: {

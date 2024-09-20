@@ -12,8 +12,9 @@ import {
 } from "@material-tailwind/react";
 import { Menu } from '../lib/definitions';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-import { updateCart } from "../redux/features/cart/cartSlice";
-import { useAppDispatch } from "../redux/hook";
+import { updateCart, selectCartStatus } from "../redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { BrandColors } from '../lib/colors';
 
 
    
@@ -22,6 +23,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
   const [maxLength, setMaxLength] = useState(10);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const cartItems = useAppSelector(selectCartStatus);
 
   useEffect(() => {
     const updateMaxLength = () => {
@@ -53,21 +55,6 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
   const handlePopoverClose = () => {
     setIsPopoverOpen(false);
   };
-
-  // const getTitleColor = () => { 
-
-  //   const green = () => '#9ee248';
-  //   return '#ff9045'; 
-  // };
-
-  const getTitleColor = (color: string) => {
-    return () => color;
-  };
-
-  const iconColor = getTitleColor('#9ee248');
-  const titleColor = getTitleColor('#ff9045');
-  const currencyColor = getTitleColor('#d53b13');
-  const tickerColor = getTitleColor('#ffffff');
   
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
       <Card className="w-96 sm:w-1/2 md:w-1/3 lg:w-1/4">
@@ -79,7 +66,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
           />
         </CardHeader>
         <CardBody>
-          <div className="mb-2 flex items-center justify-between" style={{ color: titleColor() }}>
+          <div className="mb-2 flex items-center justify-between" style={{ color: BrandColors.accentOrange }}>
             <div className="flex items-center">
               <Typography className="font-medium whitespace-normal break-words flex items-center">
                 {truncateText(name, maxLength)}
@@ -91,7 +78,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-                        style={{ color: iconColor() }}
+                        style={{ color: BrandColors.secondaryLime }}
                       />
                     </PopoverHandler>
                     <PopoverContent>
@@ -106,8 +93,8 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
           <div className="mb-2 flex items-center justify-between">
             <Typography className="font-bold">
               <span 
-                style={{ backgroundColor: iconColor(), 
-                color: tickerColor(),
+                style={{ backgroundColor: BrandColors.secondaryLime, 
+                color: BrandColors.white,
                 borderRadius: '5px',
                 padding: '0px 5px',
                 // marginRight: '5px',
@@ -123,7 +110,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
                 top: '-0.1rem', }}>
                   {currency}
                   <span
-                    style={{ color: titleColor(),
+                    style={{ color: BrandColors.accentOrange,
                       position: 'absolute',
                       top: '0.5rem',
                       fontSize: '1.2rem',
@@ -142,21 +129,40 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Button
-            ripple={false}
-            fullWidth={true}
-            className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-            style={{ 
-              backgroundColor: currencyColor(),
-              color: '#ffffff'
-            }}
-            onClick={() => {
-              console.log(`Add ${id} to Cart`) 
-              dispatch(updateCart(id))
-            }}
-          >
-            Add to Cart
-          </Button>
+          {
+            cartItems.includes(id) ?
+            <Button
+              ripple={false}
+              fullWidth={true}
+              className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              style={{ 
+                backgroundColor: BrandColors.primaryRed,
+                color: '#ffffff'
+              }}
+              onClick={() => {
+                console.log(`Remove ${id} to Cart`) 
+                dispatch(updateCart(id))
+              }}
+            >
+              Remove
+            </Button> :
+            <Button
+              ripple={false}
+              fullWidth={true}
+              className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              style={{ 
+                backgroundColor: BrandColors.primaryRed,
+                color: '#ffffff'
+              }}
+              onClick={() => {
+                console.log(`Add ${id} to Cart`) 
+                dispatch(updateCart(id))
+              }}
+            >
+              Add to Cart
+            </Button>
+          }
+          
         </CardFooter>
       </Card>
     );

@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '../redux/hook';
 import { Menu } from "../lib/definitions";
 import { selectCarouselStatus } from "../redux/features/carousel/carouselSlice";
 import { selectMenu, updateMenu } from "../redux/features/menu/menuSlice";
+import { BrandColors } from '../lib/colors';
 
 
 
@@ -25,13 +26,13 @@ const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
     const getTitleColor = () => {
         switch (active) {
             case 0:
-                return '#ff9045';
+                return BrandColors.accentOrange;
             case 1:
-                return '#d53b13';
+                return BrandColors.primaryRed
             case 2:
-                return '#9ee248';
+                return BrandColors.secondaryLime;
             default:
-                return '#ff9045'; // Default color if active is not 0, 1, or 2
+                return BrandColors.accentOrange; // Default color if active is not 0, 1, or 2
         }
     };
 

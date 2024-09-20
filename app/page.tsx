@@ -8,7 +8,6 @@ import {
 } from './lib/data';
 // import NotificationDialog from "./ui/Notification";
 
-
 export default async function Home() {
 
   const menu = await fetchMenu();
@@ -45,7 +44,6 @@ export default async function Home() {
       <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={goatmeat} title={"Goatmeat"}/>
       </div>
-      
     </div>
   );
 }

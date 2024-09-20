@@ -158,15 +158,15 @@ export default function NavbarDefault() {
           className="mr-4 cursor-pointer py-1.5 font-medium"
         >
           <Image
-          src="/logo4.jpg"
-          alt="Logo"
-          className="hidden sm:block dark:invert"
-          width={60}
-          height={50}
-          priority
-        //   absolute top-5 left-8
-          // sizes="(max-width: 768px) 100px, 200px"
-        />
+            src="/logo1.png"
+            alt="Logo"
+            className="hidden sm:block dark:invert"
+            width={90}
+            height={40}
+            priority
+            // absolute top-5 left-8
+            // sizes="(max-width: 768px) 100px, 200px"
+          />
         </Typography>
         {/* <div className="hidden lg:block">{navList}</div> */}
         <div className="flex items-center gap-x-1">
