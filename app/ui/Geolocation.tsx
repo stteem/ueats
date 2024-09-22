@@ -3,7 +3,13 @@ import { Typography } from '@material-tailwind/react';
 import { MapPinIcon } from '@heroicons/react/24/solid'
 
 
+interface Location {
+  latitude: number | null;
+  longitude: number | null;
+}
+
 const GeolocationComponent: React.FC = () => {
+  const [location, setLocation] = useState<Location>({ latitude: null, longitude: null });
   const [address, setAddress] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +26,7 @@ const GeolocationComponent: React.FC = () => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
           try {
             const fetchedAddress = await fetchAddress(latitude, longitude);
             const [firstElement = '', secondElement = '', thirdElement = ''] = fetchedAddress.split(',').map(part => part.trim());
@@ -60,7 +67,7 @@ const GeolocationComponent: React.FC = () => {
 
   return (
     <div className="mb-2 flex items-center p-4">
-        <MapPinIcon className="h-6 w-6 mr-4 ml-0.5 text-blue-gray-600" />
+        <MapPinIcon className="h-6 w-6 mr-4 ml-0.5 text-blue-500" />
         <Typography variant="text" color="blue-gray">
             {address ? `${address}` : "Fetching location..."}
             {error && `${error}`}
