@@ -16,6 +16,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { useAppSelector, useAppDispatch } from '../redux/hook';
 import { updateDrawer, selectStatus } from "../redux/features/drawer/drawerSlice";
+import GeolocationComponent from "./Geolocation";
  
 export default function DrawerWithNavigation() {
     const open = useAppSelector(selectStatus);
@@ -173,6 +174,9 @@ export default function DrawerWithNavigation() {
             Profile
           </ListItem>
         </List>
+        <div className="">
+          <GeolocationComponent />
+        </div>
       </Drawer>
     </React.Fragment>
   );

@@ -1,31 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+interface CartItem {
+  id: string;
+  image_url: string;
+  name: string;
+  currency: string;
+  price: number;
+}
 interface CartState {
-  ids: string[];
+  items: CartItem[];
 }
 
 const initialState: CartState = {
-  ids: [],
+  items: [],
 };
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    updateCart: (state, action: PayloadAction<string>) => {
-      if (!state.ids.includes(action.payload)) {
-        // If it's not in the array, add it
-        state.ids.push(action.payload);
-      }
-      else {
-         // If it's already in the array, remove it
-        state.ids = state.ids.filter(id => id !== action.payload);
-      }
+    updateCart: (state, action: PayloadAction<CartItem>) => {
+        console.log(action.payload);
+        const existingItem = state.items.find(item => item.id === action.payload.id);
+
+        if (!existingItem) {
+            // If an item with the same id is not in the array, add it
+            state.items.push(action.payload);
+        } else {
+            // If it's already in the array, remove it
+            state.items = state.items.filter(item => item.id !== action.payload.id);
+        }
     },
   },
   selectors: {
-    selectCartStatus: (cart) => cart.ids,
+    selectCartStatus: (cart) => cart.items,
   },
 });
 

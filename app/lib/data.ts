@@ -76,3 +76,16 @@ export async function fetchChickenWings() {
         throw new Error('Failed to fetch chickenwings data.');
     }
 }
+
+// export const fetchAddress = async (latitude: number, longitude: number): Promise<string> => {
+//     const api_key = process.env.NEXT_PUBLIC_MAPS_API_KEY
+//     console.log({api_key})
+//     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${api_key}`);
+//     const data = await response.json();
+//     console.log({data})
+//     if (data.status === 'OK') {
+//       return data.results[0].formatted_address;
+//     } else {
+//       throw new Error('Unable to fetch address');
+//     }
+// };

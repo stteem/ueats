@@ -25,6 +25,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartStatus);
 
+
   useEffect(() => {
     const updateMaxLength = () => {
       if (window.innerWidth < 640) {
@@ -130,7 +131,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
         </CardBody>
         <CardFooter className="pt-0">
           {
-            cartItems.includes(id) ?
+            cartItems.find(item => item.id === id) ?
             <Button
               ripple={false}
               fullWidth={true}
@@ -141,7 +142,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
               }}
               onClick={() => {
                 console.log(`Remove ${id} to Cart`) 
-                dispatch(updateCart(id))
+                dispatch(updateCart({id, image_url, name, currency, price}))
               }}
             >
               Remove
@@ -156,7 +157,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
               }}
               onClick={() => {
                 console.log(`Add ${id} to Cart`) 
-                dispatch(updateCart(id))
+                dispatch(updateCart({id, image_url, name, currency, price}))
               }}
             >
               Add to Cart
