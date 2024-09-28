@@ -6,6 +6,7 @@ import { ThemeProvider } from './ui/MaterialTailwindWrapper';
 import NavbarDefault from "./ui/Navbar"
 import DrawerWithNavigation from "./ui/DrawerWithNavigation";
 import NavBarBottom from "./ui/NavbarBottom";
+import Template from './template';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,12 @@ export default function RootLayout({
       <ThemeProvider>
         <html lang="en">
           <body className={inter.className}>
-            <NavbarDefault />
-            <DrawerWithNavigation />
-            <NavBarBottom />
-            {children}
+            <Template>
+              <NavbarDefault />
+              <DrawerWithNavigation />
+              <NavBarBottom />
+              {children}
+            </Template>
           </body>
         </html>
       </ThemeProvider>

@@ -13,6 +13,7 @@ import { updateDrawer } from "../redux/features/drawer/drawerSlice";
 import { selectCartStatus } from "../redux/features/cart/cartSlice";
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { BrandColors } from '../lib/colors';
+import { motion, AnimatePresence } from 'framer-motion';
 
  
 export default function NavbarBottom() {
@@ -37,14 +38,25 @@ export default function NavbarBottom() {
   }
  
   return (
-      <Navbar 
-        className={`mx-auto h-[60px] sm:h-[80px] px-4 py-2 lg:px-8 lg:py-4 rounded-none flex items-center bg-white`}
-        style={{ 
-          position: "fixed", 
-          bottom: 0, 
-          zIndex: 2
-        }}
-      >
+    <motion.div 
+      className={`w-full mx-auto h-[60px] sm:h-[80px] px-4 py-2 lg:px-8 lg:py-4 rounded-none flex items-center bg-white`}
+      style={{ 
+        position: "fixed", 
+        bottom: 0, 
+        zIndex: 2
+      }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ duration: 1, delay: 0.5 }}
+      initial={{ x: '-100vw', opacity: 0 }}
+      animate={{ x: cartItems.length > 0 ? 0 : '-100vw', 
+        opacity: cartItems.length > 0 ? 1 : 0, }}
+      transition={{ 
+        x: {type: 'spring', stiffness: 120, damping: 20},
+        opacity: { duration: cartItems.length > 0 ? 0.5 : 100 },
+        // delay: cartItems.length > 0 ? 0 : 0.5
+      }}
+    >
         <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
@@ -78,7 +90,7 @@ export default function NavbarBottom() {
             <span>Cart ({cartItems.length})</span>
           </Button>
         </div>
-       
-      </Navbar>
+    </motion.div>
+    
   );
 }
