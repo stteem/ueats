@@ -1,6 +1,10 @@
 'use client';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import React from 'react';
+import Image from 'next/image';
+
+const MotionImage = motion(Image);
+
 
 interface AnimatedDivProps {
     imageSrc: string;
@@ -27,19 +31,24 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
         
         >
         {children}
-        <motion.img
-          src={imageSrc}
-          initial={{ x: '-100vw'  }}
-          animate={{ 
-            x: isInView ? 0 : '-100vw'
-          }}
-          transition={{ 
-            duration: 0.8, 
-            ease: "easeOut", 
-            delay: 0.2,
-            x: {type: 'spring', stiffness: 120 },
-        }}
-          style={{ width: '45%', maxWidth: '300px' }} // Adjust as needed
+        <MotionImage
+            src={imageSrc}
+            initial={{ x: '-100vw', y: 0  }}
+            animate={{ 
+                x: isInView ? 0 : '-100vw',
+                y: [0, -10, 0],
+            }}
+            transition={{ 
+                duration: 0.8, 
+                ease: "easeOut", 
+                delay: 0.2,
+                repeat: Infinity,
+                x: {type: 'spring', stiffness: 120 },
+            }}
+            width={300}
+            height={200}
+            alt="A vector image of a dispatch rider swiftly sliding across the screen with the inscription 'Fast Delivery'"
+            style={{ width: '50%', maxWidth: '300px' }} // Adjust as needed
         />
         </motion.div>
     </AnimatePresence>
