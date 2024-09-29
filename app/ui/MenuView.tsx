@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import EcommerceCard  from './MenuCard'
 import { useAppSelector, useAppDispatch } from '../redux/hook';
 import { Menu } from "../lib/definitions";
@@ -15,12 +15,20 @@ interface MenuViewProps {
 }
 
 const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
+    const [screenWidth, setScreenWidth] = useState(0);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(updateMenu(menuItems));
     }, [menuItems, dispatch]);
     const active = useAppSelector(selectCarouselStatus);
+
+    useEffect(() => {
+        setScreenWidth(window.innerWidth);
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
     
 
     const getTitleColor = () => {
@@ -35,12 +43,20 @@ const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
                 return BrandColors.accentOrange; // Default color if active is not 0, 1, or 2
         }
     };
+    
+    const shouldCenter = menuItems && menuItems.length <= 3;
 
     return(
         <div className="menu-container">
              {menuItems.length === 0 && <h1 className='flex relative justify-center items-center mb-10 mt-20 text-4xl text-red-500 font-bold'>No Menu Available</h1>}
              {menuItems.length && <h1 id="title" className='flex relative justify-center items-center my-8 text-3xl text-red-500 font-bold' style={{ color: getTitleColor() }}>{title}</h1>}
-            <div className="scroll-container items-center gap-4 p-4">
+            <div 
+                className={`
+                    scroll-container p-4
+                    hide-scrollbar
+                    ${shouldCenter && screenWidth > 768 ? 'justify-center' : 'justify-start'}
+                `}
+            >    
                 { menuItems && menuItems?.map((menu, index) => (
                     <EcommerceCard
                         key={index}

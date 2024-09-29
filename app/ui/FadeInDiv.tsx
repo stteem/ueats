@@ -14,7 +14,7 @@ interface AnimatedDivProps {
 const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
     
     const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: false, amount: 1 });
+    const isInView = useInView(ref, { once: true, amount: 1 });
 
     return (
     <AnimatePresence>
@@ -27,7 +27,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
               y: isInView ? 0 : 50 
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{paddingRight: '10%'}}
+            style={{ height: '350px', maxHeight: '400px'}}
         
         >
         {children}
@@ -48,7 +48,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
             width={300}
             height={200}
             alt="A vector image of a dispatch rider swiftly sliding across the screen with the inscription 'Fast Delivery'"
-            style={{ width: '50%', maxWidth: '300px' }} // Adjust as needed
+            style={{ width: '50%', maxWidth: '300px', }} // Adjust as needed
         />
         </motion.div>
     </AnimatePresence>

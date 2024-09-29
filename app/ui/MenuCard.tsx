@@ -132,13 +132,20 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
         <CardFooter className="pt-0">
           {
             cartItems.find(item => item.id === id) ?
+            <div className="flex items-center justify-center w-full sm:w-1/2 md:w-auto lg:w-auto xl:w-auto px-2">
             <Button
               ripple={false}
-              fullWidth={true}
+              fullWidth={false}
               className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               style={{ 
                 backgroundColor: BrandColors.primaryRed,
-                color: '#ffffff'
+                color: '#ffffff',
+                width: '100%',  // Set your desired width here
+                maxWidth: '150px',
+                minWidth: '150px',  // This ensures the button doesn't shrink below this width
+                whiteSpace: 'nowrap',  // Prevents text from wrapping
+                overflow: 'hidden',  // Hides any overflowing text
+                textOverflow: 'ellipsis', 
               }}
               onClick={() => {
                 console.log(`Remove ${id} to Cart`) 
@@ -146,14 +153,22 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
               }}
             >
               Remove
-            </Button> :
+            </Button>
+            </div> :
+            <div className="flex items-center justify-center w-full sm:w-1/2 md:w-auto lg:w-auto xl:w-auto px-2">
             <Button
               ripple={false}
               fullWidth={true}
               className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               style={{ 
                 backgroundColor: BrandColors.primaryRed,
-                color: '#ffffff'
+                color: '#ffffff',
+                width: '100%',  // Set your desired width here
+                maxWidth: '150px',
+                minWidth: '150px',  // This ensures the button doesn't shrink below this width
+                whiteSpace: 'nowrap',  // Prevents text from wrapping
+                overflow: 'hidden',  // Hides any overflowing text
+                textOverflow: 'ellipsis', 
               }}
               onClick={() => {
                 console.log(`Add ${id} to Cart`) 
@@ -162,6 +177,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
             >
               Add to Cart
             </Button>
+            </div>
           }
           
         </CardFooter>
