@@ -17,10 +17,7 @@ export default function NavbarDefault() {
   const dispatch = useAppDispatch();
   
   const openDrawer = () => {
-    // alert("button clicked")
-    console.log('open before func ',open)
     dispatch(updateDrawer(true));
-    console.log('open after func ',open)
   }
  
   useEffect(() => {

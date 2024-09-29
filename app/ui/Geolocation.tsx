@@ -45,7 +45,7 @@ const GeolocationComponent: React.FC = () => {
         },
         {
           enableHighAccuracy: true,
-          timeout: 15000,
+          timeout: 25000,
           maximumAge: 0,
         }
       );

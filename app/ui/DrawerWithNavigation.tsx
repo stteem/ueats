@@ -33,7 +33,12 @@ export default function DrawerWithNavigation() {
   return (
     <React.Fragment>
       {/* <Button onClick={openDrawer}>Open Drawer</Button> */}
-      <Drawer open={open} onClose={closeDrawer}>
+      <Drawer 
+        // placement="right"
+        open={open} 
+        onClose={closeDrawer}
+        // size={250}
+      >
         <div className="mb-2 flex items-center justify-between p-4">
           <Typography variant="h5" color="blue-gray">
             Ueats
