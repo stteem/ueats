@@ -19,7 +19,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
     return (
     <AnimatePresence>
         <motion.div
-            className="flex flex-col items-center justify-center"
+            className="flex items-center justify-center"
             ref={ref}
             initial={{ opacity: 0, y: 50 }}
             animate={{ 
@@ -27,7 +27,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
               y: isInView ? 0 : 50 
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{ height: '350px', maxHeight: '400px'}}
+            style={{ height: '350px', maxHeight: '350px'}}
         
         >
         {children}
@@ -48,7 +48,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
             width={300}
             height={200}
             alt="A vector image of a dispatch rider swiftly sliding across the screen with the inscription 'Fast Delivery'"
-            style={{ width: '50%', maxWidth: '300px', }} // Adjust as needed
+            style={{ width: '100%', maxWidth: '300px', }} // Adjust as needed
         />
         </motion.div>
     </AnimatePresence>
