@@ -28,7 +28,7 @@ const MenuView: React.FC<MenuViewProps> = React.memo(({menuItems, title}) => {
         const handleResize = () => setScreenWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-      }, []);
+    }, []);
     
 
     const getTitleColor = () => {

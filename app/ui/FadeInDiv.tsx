@@ -1,7 +1,8 @@
 'use client';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+
 
 const MotionImage = motion(Image);
 
@@ -12,9 +13,20 @@ interface AnimatedDivProps {
 }
 
 const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
-    
+    const [screenWidth, setScreenWidth] = useState(0);
+
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, amount: 1 });
+
+    useEffect(() => {
+        setScreenWidth(window.innerWidth);
+        const handleResize = () => setScreenWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const deliveryBikeWidth = screenWidth && screenWidth > 768 ? '100%' : '50%';
+    const deliveryBikeDivWidth = screenWidth && screenWidth > 768 ? '350px' : '300px';
 
     return (
     <AnimatePresence>
@@ -27,7 +39,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
               y: isInView ? 0 : 50 
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{ height: '350px', maxHeight: '350px'}}
+            style={{ height: deliveryBikeDivWidth, maxHeight: '350px'}}
         
         >
         {children}
@@ -48,7 +60,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
             width={300}
             height={200}
             alt="A vector image of a dispatch rider swiftly sliding across the screen with the inscription 'Fast Delivery'"
-            style={{ width: '100%', maxWidth: '300px', }} // Adjust as needed
+            style={{ width: deliveryBikeWidth, maxWidth: '300px', }} // Adjust as needed
         />
         </motion.div>
     </AnimatePresence>
