@@ -48,11 +48,11 @@ export default function DrawerPlacement() {
     <React.Fragment>
        
       <Drawer
-        placement="right"
-        open={openCart}
+        placement="bottom"
+        open={screenWidth < 768 ? openCart : false}
         onClose={closeDrawerRight}
         className="p-4"
-        size={getDrawerSize()}
+        size={600}
       >
         <div className="mb-6 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray">
@@ -93,10 +93,11 @@ export default function DrawerPlacement() {
 
 
       <Drawer
-        placement="bottom"
-        open={openBottom}
-        onClose={closeDrawerBottom}
-        className="p-4"
+       placement="right"
+       open={screenWidth > 768 ? openCart : false}
+       onClose={closeDrawerRight}
+       className="p-4"
+       size={700}
       >
         <div className="mb-6 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray">

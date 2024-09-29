@@ -7,7 +7,7 @@ import NavbarDefault from "./ui/Navbar"
 import DrawerWithNavigation from "./ui/DrawerWithNavigation";
 import NavBarBottom from "./ui/NavbarBottom";
 import Template from './template';
-import DrawerPlacement from "./ui/BottomDrawer";
+import DrawerPlacement from "./ui/CartDrawer";
 
 const inter = Inter({ subsets: ["latin"] });
 

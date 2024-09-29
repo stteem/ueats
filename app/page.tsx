@@ -6,6 +6,7 @@ import {
     fetchBeefCombo, fetchGoatmeatCombo, 
     fetchBeef, fetchChickenWings, fetchGoatmeat 
 } from './lib/data';
+import AnimatedDiv from './ui/FadeInDiv';
 // import NotificationDialog from "./ui/Notification";
 
 export default async function Home() {
@@ -34,6 +35,12 @@ export default async function Home() {
       </div>
       <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg3.png')" }}>
         <MenuView menuItems={goatmeatCombo} title={"Goatmeat Combos"}/>
+      </div>
+      <div className='bg-blue-gray-50' style={{ backgroundImage: "url('/bg-png.png')" }}>
+        <AnimatedDiv imageSrc="/delivery-image.png">
+          {/* <h2>Your content here</h2>
+          <p>More content...</p> */}
+        </AnimatedDiv>
       </div>
       <div className='bg-blue-gray-50 ' style={{ backgroundImage: "url('/bg-png.png')" }}>
         <MenuView menuItems={beef} title={"Beef"}/>
