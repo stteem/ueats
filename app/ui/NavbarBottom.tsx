@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { updateCartDrawer } from "../redux/features/drawer/drawerSlice";
-import { selectCartStatus } from "../redux/features/cart/cartSlice";
+import { selectCartItems } from "../redux/features/cart/cartSlice";
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { BrandColors } from '../lib/colors';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,7 +18,7 @@ import { motion, AnimatePresence } from 'framer-motion';
  
 export default function NavbarBottom() {
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(selectCartStatus);
+  const cartItems = useAppSelector(selectCartItems);
   
   const openCartDrawer = () => {
     dispatch(updateCartDrawer(true));

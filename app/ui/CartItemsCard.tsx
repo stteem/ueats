@@ -9,16 +9,18 @@ import {
     PopoverHandler,
     PopoverContent,
     Button,
+    IconButton
 } from "@material-tailwind/react";
+import { PlusIcon, MinusIcon } from "../lib/svgIcons";
 import { Menu } from '../lib/definitions';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-import { updateCart, selectCartItems } from "../redux/features/cart/cartSlice";
+import { updateCart, selectCartItems, updateItemQuantity } from "../redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { BrandColors } from '../lib/colors';
 
 
    
-const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, description}) => {
+const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, description}) => {
   
   const [maxLength, setMaxLength] = useState(10);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -57,9 +59,10 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
     setIsPopoverOpen(false);
   };
   
+  
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
-      <Card className="w-96 sm:w-1/2 md:w-1/3 lg:w-1/4">
-        <CardHeader shadow={false} floated={false} className="h-48 sm:h-48 md:h-72 lg:h-72 flex items-center justify-between overflow-hidden">
+      <Card className="w-40 sm:w-32 md:w-40 lg:w-1/3 h-49 sm:h-48 md:h-72 lg:h-72">
+        <CardHeader shadow={false} floated={false} className="h-48 sm:h-48 md:h-72 lg:h-72 flex items-center justify-center overflow-hidden">
           <img
             src={image_url}
             alt="card-image"
@@ -75,7 +78,7 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
                   <Popover open={isPopoverOpen} handler={setIsPopoverOpen}>
                     <PopoverHandler>
                       <InformationCircleIcon
-                        className="h-6 w-6 ml-2 cursor-pointer"
+                        className="h-7 w-7 md:h-12 md:w-12 ml-2 cursor-pointer"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -129,60 +132,44 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
             {description}
           </Typography>
         </CardBody>
-        <CardFooter className="pt-0">
-          {
-            cartItems.find(item => item.id === id) ?
-            <div className="flex items-center justify-center w-full sm:w-1/2 md:w-auto lg:w-auto xl:w-auto px-2">
-            <Button
-              ripple={false}
-              fullWidth={false}
-              className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+        <CardFooter className="flex gap-4 pt-0">
+          
+            <IconButton
+              variant="outlined"
+              className="text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
               style={{ 
-                backgroundColor: BrandColors.primaryRed,
-                color: '#ffffff',
-                width: '100%',  // Set your desired width here
-                maxWidth: '150px',
-                minWidth: '150px',  // This ensures the button doesn't shrink below this width
-                whiteSpace: 'nowrap',  // Prevents text from wrapping
-                overflow: 'hidden',  // Hides any overflowing text
-                textOverflow: 'ellipsis', 
+                color: BrandColors.primaryRed,
+                borderColor: BrandColors.primaryRed,
               }}
-              onClick={() => {
-                console.log(`Remove ${id} to Cart`) 
-                dispatch(updateCart({id, image_url, name, currency, price, description, quantity:-1}))
-              }}
+              onClick={() => dispatch(updateItemQuantity({id: id, quantityChange: 1}))}
+              // onClick={() => {
+              //   console.log(`Add ${id} to Cart`) 
+              //   // dispatch(updateCart({id, image_url, name, currency, price, description}))
+              // }}
             >
-              Remove
-            </Button>
-            </div> :
-            <div className="flex items-center justify-center w-full sm:w-1/2 md:w-auto lg:w-auto xl:w-auto px-2">
-            <Button
-              ripple={false}
-              fullWidth={true}
-              className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              <PlusIcon />
+            </IconButton>
+             
+            <IconButton
+              className="text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+              variant="outlined"
+              disabled={cartItems.length === 0}
               style={{ 
-                backgroundColor: BrandColors.primaryRed,
-                color: '#ffffff',
-                width: '100%',  // Set your desired width here
-                maxWidth: '150px',
-                minWidth: '150px',  // This ensures the button doesn't shrink below this width
-                whiteSpace: 'nowrap',  // Prevents text from wrapping
-                overflow: 'hidden',  // Hides any overflowing text
-                textOverflow: 'ellipsis', 
+                color: BrandColors.primaryRed, 
+                borderColor: BrandColors.primaryRed,
               }}
-              onClick={() => {
-                console.log(`Add ${id} to Cart`) 
-                dispatch(updateCart({id, image_url, name, currency, price, description, quantity:1}))
-              }}
+              onClick={() => dispatch(updateItemQuantity({id: id, quantityChange: -1}))}
+              // onClick={() => {
+              //   console.log(`REmove ${id} from Cart`) 
+              //   // dispatch(updateCart({id, image_url, name, currency, price, description}))
+              // }}
             >
-              Add to Cart
-            </Button>
-            </div>
-          }
+              <MinusIcon />
+            </IconButton>
           
         </CardFooter>
       </Card>
     );
   }
 
-export default EcommerceCard;
+export default CartItemsCard;
