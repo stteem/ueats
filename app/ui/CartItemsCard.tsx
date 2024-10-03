@@ -11,6 +11,7 @@ import {
     Button,
     IconButton
 } from "@material-tailwind/react";
+import Image from "next/image";
 import { PlusIcon, MinusIcon } from "../lib/svgIcons";
 import { Menu } from '../lib/definitions';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
@@ -66,6 +67,8 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
           <img
             src={image_url}
             alt="card-image"
+            // width={"40"}
+            // height={"40"}
             className="h-full w-full max-w-full object-cover"
           />
         </CardHeader>
