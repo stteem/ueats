@@ -9,11 +9,13 @@ import {
     PopoverHandler,
     PopoverContent,
     Button,
-    IconButton
+    IconButton,
+    Chip
 } from "@material-tailwind/react";
 import Image from "next/image";
 import { PlusIcon, MinusIcon } from "../lib/svgIcons";
 import { Menu } from '../lib/definitions';
+import { CartItem } from "../redux/features/cart/cartSlice";
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { updateCart, selectCartItems, updateItemQuantity } from "../redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
@@ -21,7 +23,7 @@ import { BrandColors } from '../lib/colors';
 
 
    
-const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, description}) => {
+const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price, quantity, description}) => {
   
   const [maxLength, setMaxLength] = useState(10);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -34,9 +36,9 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
       if (window.innerWidth < 640) {
         setMaxLength(10); // Mobile screens
       } else if (window.innerWidth < 1024) {
-        setMaxLength(21); // Tablet screens
+        setMaxLength(16); // Tablet screens
       } else {
-        setMaxLength(25); // PC screens
+        setMaxLength(19); // PC screens
       }
     };
 
@@ -62,17 +64,17 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
   
   
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
-      <Card className="w-40 sm:w-32 md:w-40 lg:w-1/3 h-49 sm:h-48 md:h-72 lg:h-72">
-        <CardHeader shadow={false} floated={false} className="h-48 sm:h-48 md:h-72 lg:h-72 flex items-center justify-center overflow-hidden">
-          <img
-            src={image_url}
-            alt="card-image"
-            // width={"40"}
-            // height={"40"}
-            className="h-full w-full max-w-full object-cover"
-          />
-        </CardHeader>
-        <CardBody>
+      <div className="flex items-center justify-between w-full sm:w-32 md:w-60 lg:w-full h-49 sm:h-48 md:h-40 lg:h-50 pr-5">
+        <div className="w-20 md:w-40 lg:w-40 h-auto sm:h-48 md:h-1/2 lg:h-auto flex items-center justify-center overflow-hidden">
+            <img
+              src={image_url}
+              alt="card-image"
+              // width={40}
+              // height={40}
+              className="h-full w-full md:h-40 md:w-40 object-contain"
+            />
+        </div>
+        <div>
           <div className="mb-2 flex items-center justify-between" style={{ color: BrandColors.accentOrange }}>
             <div className="flex items-center">
               <Typography className="font-medium whitespace-normal break-words flex items-center">
@@ -81,7 +83,7 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
                   <Popover open={isPopoverOpen} handler={setIsPopoverOpen}>
                     <PopoverHandler>
                       <InformationCircleIcon
-                        className="h-7 w-7 md:h-12 md:w-12 ml-2 cursor-pointer"
+                        className="h-5 w-5 md:h-5 md:w-5 cursor-pointer"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -123,7 +125,7 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
                       fontSize: '1.2rem',
                       zIndex: 1,
                     }}
-                  >{price}</span>
+                  >{price * quantity}</span>
               </span> 
             </Typography>
           </div>
@@ -134,8 +136,8 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
           >
             {description}
           </Typography>
-        </CardBody>
-        <CardFooter className="flex gap-4 pt-0">
+        </div>
+        <div className="flex gap-3">
           
             <IconButton
               variant="outlined"
@@ -143,6 +145,8 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
               style={{ 
                 color: BrandColors.primaryRed,
                 borderColor: BrandColors.primaryRed,
+                width: '25px',
+                height: '25px'
               }}
               onClick={() => dispatch(updateItemQuantity({id: id, quantityChange: 1}))}
               // onClick={() => {
@@ -152,6 +156,15 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
             >
               <PlusIcon />
             </IconButton>
+            {/* <div> */}
+              <Chip
+                  value={quantity}
+                  variant="ghost"
+                  size="sm"
+                  className="rounded-full flex items-center justify-center"
+                  style={{width:"30px"}}
+              />
+            {/* </div> */}
              
             <IconButton
               className="text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
@@ -160,6 +173,8 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
               style={{ 
                 color: BrandColors.primaryRed, 
                 borderColor: BrandColors.primaryRed,
+                width: '25px',
+                height: '25px'
               }}
               onClick={() => dispatch(updateItemQuantity({id: id, quantityChange: -1}))}
               // onClick={() => {
@@ -169,9 +184,8 @@ const CartItemsCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
             >
               <MinusIcon />
             </IconButton>
-          
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     );
   }
 

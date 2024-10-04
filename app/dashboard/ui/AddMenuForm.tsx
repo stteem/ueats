@@ -1,3 +1,4 @@
+'use client'
 import { Input, Typography } from "@material-tailwind/react";
  
 

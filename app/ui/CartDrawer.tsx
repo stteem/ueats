@@ -68,7 +68,8 @@ export default function DrawerPlacement() {
         size={600}
       >
         <div className="mb-6 flex items-center justify-between">
-          <Typography variant="h5" 
+          <Typography 
+            variant="h5" 
             style={{ color: BrandColors.primaryRed }}
           >
           {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total {cartTotal}
@@ -109,8 +110,11 @@ export default function DrawerPlacement() {
        size={700}
       >
         <div className="mb-6 flex items-center justify-between">
-          <Typography variant="h5" color="blue-gray">
-            Cart
+          <Typography 
+            variant="h5" 
+            style={{ color: BrandColors.primaryRed }}
+          >
+          {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total {cartTotal}
           </Typography>
           <IconButton
             variant="text"

@@ -25,8 +25,8 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const deliveryBikeWidth = screenWidth && screenWidth > 768 ? '100%' : '50%';
-    const deliveryBikeDivWidth = screenWidth && screenWidth > 768 ? '350px' : '300px';
+    const deliveryBikeWidth = screenWidth && screenWidth > 768 ? '90%' : '40%';
+    const deliveryBikeDivWidth = screenWidth && screenWidth > 768 ? '300px' : '250px';
 
     return (
     <AnimatePresence>
@@ -39,7 +39,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
               y: isInView ? 0 : 50 
             }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            style={{ height: deliveryBikeDivWidth, maxHeight: '350px'}}
+            style={{ height: deliveryBikeDivWidth, maxHeight: '300px'}}
         
         >
         {children}
@@ -60,7 +60,7 @@ const AnimatedDiv: React.FC<AnimatedDivProps> = ({ imageSrc, children }) => {
             width={300}
             height={200}
             alt="A vector image of a dispatch rider swiftly sliding across the screen with the inscription 'Fast Delivery'"
-            style={{ width: deliveryBikeWidth, maxWidth: '300px', }} // Adjust as needed
+            style={{ width: deliveryBikeWidth, maxWidth: '250px', }} // Adjust as needed
         />
         </motion.div>
     </AnimatePresence>

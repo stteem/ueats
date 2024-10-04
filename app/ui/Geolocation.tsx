@@ -14,6 +14,38 @@ const GeolocationComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const getUserLocation = () => {
+      if (isGeolocationAvailable()) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const { latitude, longitude } = position.coords;
+            setLocation({ latitude, longitude });
+            try {
+              const fetchedAddress = await fetchAddress(latitude, longitude);
+              const [firstElement = '', secondElement = '', thirdElement = ''] = fetchedAddress.split(',').map(part => part.trim());
+              const formatted_address = `${secondElement}, ${thirdElement}`;
+              setAddress(formatted_address);
+            } catch (error) {
+              if (error instanceof Error) {
+                  setError(error.message);
+              } else {
+                  setError('An unknown error occurred');
+              }
+            }
+          },
+          (error) => {
+            setError(error.message);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0,
+          }
+        );
+      } else {
+        setError("Geolocation is not supported by this browser.");
+      }
+    };
     getUserLocation();
   }, []);
 
@@ -21,38 +53,7 @@ const GeolocationComponent: React.FC = () => {
     return 'geolocation' in navigator;
   };
 
-  const getUserLocation = () => {
-    if (isGeolocationAvailable()) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation({ latitude, longitude });
-          try {
-            const fetchedAddress = await fetchAddress(latitude, longitude);
-            const [firstElement = '', secondElement = '', thirdElement = ''] = fetchedAddress.split(',').map(part => part.trim());
-            const formatted_address = `${secondElement}, ${thirdElement}`;
-            setAddress(formatted_address);
-          } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
-            } else {
-                setError('An unknown error occurred');
-            }
-          }
-        },
-        (error) => {
-          setError(error.message);
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 25000,
-          maximumAge: 0,
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-    }
-  };
+  
 
   const fetchAddress = async (latitude: number, longitude: number): Promise<string> => {
     const api_key = process.env.NEXT_PUBLIC_MAPS_API_KEY

@@ -4,7 +4,9 @@ import {
     ListItem,
     ListItemSuffix,
     Chip,
-    IconButton
+    IconButton,
+    ListItemPrefix,
+    Avatar
 } from "@material-tailwind/react";
 import CartItemsCard from "./CartItemsCard";
 import { updateCart, trashCartItem, selectCartItems } from "../redux/features/cart/cartSlice";
@@ -38,28 +40,23 @@ export default function ListCartItemsWithBadge() {
             {
                 cartItems.map((item, index) => (
                     <ListItem key={index} ripple={false}>
-                        <CartItemsCard 
-                            key={index}
-                            name={item.name}
-                            price={item.price}
-                            currency={item.currency}
-                            description={item.description}
-                            image_url={item.image_url}
-                            id={item.id} 
-                        />
+                        {/* <ListItemPrefix>
+                            <Avatar variant="circular" alt="candice" src={item.image_url} />
+                        </ListItemPrefix> */}
+                        {/* <ListItemPrefix> */}
+                            <CartItemsCard 
+                                key={index}
+                                name={item.name}
+                                price={item.price}
+                                currency={item.currency}
+                                description={item.description}
+                                image_url={item.image_url}
+                                quantity={item.quantity}
+                                id={item.id} 
+                            />
+                        {/* </ListItemPrefix> */}
                         <ListItemSuffix>
-                        <Chip
-                            value={`Qty: ${item.quantity}`}
-                            variant="ghost"
-                            size="lg"
-                            className="rounded-full"
-                        />
-                        <Chip
-                            value={`Subtotal: ${item.price * item.quantity}`}
-                            variant="ghost"
-                            size="lg"
-                            className="rounded-full"
-                        />
+                        
                         </ListItemSuffix>
                         <ListItemSuffix>
                             <IconButton 
