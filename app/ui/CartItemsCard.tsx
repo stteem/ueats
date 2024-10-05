@@ -66,11 +66,11 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
       <div className="flex items-center justify-between w-full sm:w-32 md:w-60 lg:w-full h-49 sm:h-48 md:h-40 lg:h-50 gap-5">
         <div className="w-20 md:w-40 lg:w-40 h-auto sm:h-48 md:h-1/2 lg:h-auto flex items-center justify-center overflow-hidden">
-            <img
+            <Image
               src={image_url}
               alt="card-image"
-              // width={40}
-              // height={40}
+              width={40}
+              height={40}
               className="h-full w-full md:h-40 md:w-40 object-contain"
             />
         </div>

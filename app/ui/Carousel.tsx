@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Carousel } from "@material-tailwind/react";
 import { updateCarousel } from "../redux/features/carousel/carouselSlice";
 import { useAppDispatch } from "../redux/hook"
+import Image from "next/image";
+
  
 export function CarouselDefault() {
 
@@ -29,20 +31,26 @@ export function CarouselDefault() {
       className="rounded-none"
       // activeIndex={activeIndex}
     >
-      <img
+      <Image
         src="/carousel1.svg"
+        width={1920}
+        height={600}
         alt="The carousel has an orange background with a white bowl of jollof rice. On the background is the heading 'Healthy Fast Food' and a subtext 'Freshly cooked delicious jollof rice'."
         className="h-full md:h-[600px] w-full object-cover"
       />
       
-      <img
+      <Image
         src="/carousel2.svg"
+        width={1920}
+        height={600}
         alt="The carousel has a red background with a paper bowl of jollof rice and a paper of pieces of fried and garnished chicken wings. On the background is the heading 'Deliciously Sauced Chicken Wings & Jollof Rice'."
         className="h-full md:h-[600px] w-full object-cover"
       />
       
-      <img
+      <Image
         src="/carousel3.svg"
+        width={1920}
+        height={600}
         alt="image 3"
         className="h-full md:h-[600px] w-full object-cover"
       />

@@ -15,6 +15,8 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { updateCart, selectCartItems } from "../redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { BrandColors } from '../lib/colors';
+import Image from "next/image";
+
 
 
    
@@ -60,8 +62,10 @@ const EcommerceCard: React.FC<Menu> = ({id, image_url, name, currency, price, de
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
       <Card className="w-96 sm:w-1/2 md:w-1/3 lg:w-1/4">
         <CardHeader shadow={false} floated={false} className="h-48 sm:h-48 md:h-72 lg:h-72 flex items-center justify-between overflow-hidden">
-          <img
+          <Image
             src={image_url}
+            width={72}
+            height={72}
             alt="card-image"
             className="h-full w-full max-w-full object-cover"
           />
