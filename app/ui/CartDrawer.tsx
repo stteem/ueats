@@ -67,13 +67,13 @@ export default function DrawerPlacement() {
         // className="p-4"
         size={600}
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-3 p-4 flex items-center justify-between">
           <Typography 
             // variant="h5" 
             style={{ color: BrandColors.primaryRed }}
             className="font-bold sm:text-sm md:text-base"
           >
-          {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total {cartTotal}
+          {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total: <span style={{color: BrandColors.secondaryLime}}>Ghc</span> <span style={{color:BrandColors.accentOrange}}>{cartTotal}</span>
           </Typography>
           <IconButton
             variant="text"
@@ -99,6 +99,11 @@ export default function DrawerPlacement() {
         
         <div className="h-full overflow-y-auto pb-32 p-4 gap-2">
           <ListCartItemsWithBadge />
+          <div>
+            <Button
+              style={{ backgroundColor: BrandColors.primaryRed }}
+            >Proceed To Checkout</Button>
+          </div>
         </div>
       </Drawer>
 
@@ -116,7 +121,7 @@ export default function DrawerPlacement() {
             style={{ color: BrandColors.primaryRed }}
             className="font-bold sm:text-sm md:text-base"
           >
-          {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total {cartTotal}
+          {cartItems.length} Cart {cartItems.length <= 1 ? 'Item' : 'Items'} | Total: <span style={{color: BrandColors.secondaryLime}}>Ghc</span> <span style={{color:BrandColors.accentOrange}}>{cartTotal}</span>
           </Typography>
           <IconButton
             variant="text"
@@ -141,6 +146,11 @@ export default function DrawerPlacement() {
         </div>
         <div className="h-screen overflow-y-auto pb-40 p-4 gap-2">
           <ListCartItemsWithBadge />
+          <div>
+            <Button
+              style={{ backgroundColor: BrandColors.primaryRed }}
+            >Proceed To Checkout</Button>
+          </div>
         </div>
       </Drawer>
       
