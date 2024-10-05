@@ -39,7 +39,7 @@ export default function ListCartItemsWithBadge() {
         <div>
             {
                 cartItems.map((item, index) => (
-                    <div key={index} className="flex items-center justify-between gap-5">
+                    <div key={index} className="flex items-center justify-between mb-7 gap-5">
                         
                         <CartItemsCard 
                             key={index}
