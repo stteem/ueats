@@ -64,7 +64,7 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
   
   
   return ( //w-96 sm:w-full md:w-1/2 lg:w-1/3
-      <div className="flex items-center justify-between w-full sm:w-32 md:w-60 lg:w-full h-49 sm:h-48 md:h-40 lg:h-50 pr-5">
+      <div className="flex items-center justify-between w-full sm:w-32 md:w-60 lg:w-full h-49 sm:h-48 md:h-40 lg:h-50 gap-5">
         <div className="w-20 md:w-40 lg:w-40 h-auto sm:h-48 md:h-1/2 lg:h-auto flex items-center justify-center overflow-hidden">
             <img
               src={image_url}
@@ -162,7 +162,7 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
                   variant="ghost"
                   size="sm"
                   className="rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base"
-                  style={{width:"20px"}}
+                  style={{width:"25px", height:"25px"}}
               />
             {/* </div> */}
              

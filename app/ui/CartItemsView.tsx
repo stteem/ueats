@@ -36,29 +36,23 @@ export default function ListCartItemsWithBadge() {
 
     
     return (
-        <List>
+        <div>
             {
                 cartItems.map((item, index) => (
-                    <ListItem key={index} ripple={false}>
-                        {/* <ListItemPrefix>
-                            <Avatar variant="circular" alt="candice" src={item.image_url} />
-                        </ListItemPrefix> */}
-                        {/* <ListItemPrefix> */}
-                            <CartItemsCard 
-                                key={index}
-                                name={item.name}
-                                price={item.price}
-                                currency={item.currency}
-                                description={item.description}
-                                image_url={item.image_url}
-                                quantity={item.quantity}
-                                id={item.id} 
-                            />
-                        {/* </ListItemPrefix> */}
-                        <ListItemSuffix>
+                    <div key={index} className="flex items-center justify-between gap-5">
                         
-                        </ListItemSuffix>
-                        <ListItemSuffix>
+                        <CartItemsCard 
+                            key={index}
+                            name={item.name}
+                            price={item.price}
+                            currency={item.currency}
+                            description={item.description}
+                            image_url={item.image_url}
+                            quantity={item.quantity}
+                            id={item.id} 
+                        />
+                        
+                        <div>
                             <IconButton 
                                 variant="text" 
                                 color="blue-gray"
@@ -68,12 +62,12 @@ export default function ListCartItemsWithBadge() {
                             >
                             <TrashIcon />
                             </IconButton>
-                        </ListItemSuffix>
-                    </ListItem>
+                        </div>
+                    </div>
                 ))
             }
             
          
-        </List>
+        </div>
     );
 }
