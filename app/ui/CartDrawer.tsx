@@ -64,7 +64,7 @@ export default function DrawerPlacement() {
         placement="bottom"
         open={screenWidth < 768 ? openCart : false}
         onClose={closeDrawerBottom}
-        className="p-4"
+        // className="p-4"
         size={600}
       >
         <div className="mb-6 flex items-center justify-between">
