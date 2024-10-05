@@ -77,13 +77,13 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
         <div>
           <div className="mb-2 flex items-center justify-between" style={{ color: BrandColors.accentOrange }}>
             <div className="flex items-center">
-              <Typography className="font-medium whitespace-normal break-words flex items-center">
+              <Typography className="font-medium text-xs sm:text-sm md:text-base whitespace-normal break-words flex items-center">
                 {truncateText(name, maxLength)}
                 {name.length > maxLength && (
                   <Popover open={isPopoverOpen} handler={setIsPopoverOpen}>
                     <PopoverHandler>
                       <InformationCircleIcon
-                        className="h-5 w-5 md:h-5 md:w-5 cursor-pointer"
+                        className="h-5 w-5 sm:h-6 sm:w-6 cursor-pointer"
                         onMouseEnter={handlePopoverOpen}
                         onMouseLeave={handlePopoverClose}
                         onClick={() => setIsPopoverOpen(!isPopoverOpen)}
@@ -100,7 +100,7 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
             </div>
           </div>
           <div className="mb-2 flex items-center justify-between">
-            <Typography className="font-bold">
+            <Typography className="font-bold text-xs sm:text-sm md:text-base">
               <span 
                 style={{ backgroundColor: BrandColors.secondaryLime, 
                 color: BrandColors.white,
@@ -121,7 +121,7 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
                   <span
                     style={{ color: BrandColors.accentOrange,
                       position: 'absolute',
-                      top: '0.5rem',
+                      top: '0.9rem',
                       fontSize: '1.2rem',
                       zIndex: 1,
                     }}
@@ -132,12 +132,12 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
           <Typography
             variant="small"
             color="gray"
-            className="font-normal opacity-75"
+            className="font-normal text-xs sm:text-sm md:text-base opacity-75"
           >
             {description}
           </Typography>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-1">
           
             <IconButton
               variant="outlined"
@@ -161,8 +161,8 @@ const CartItemsCard: React.FC<CartItem> = ({id, image_url, name, currency, price
                   value={quantity}
                   variant="ghost"
                   size="sm"
-                  className="rounded-full flex items-center justify-center"
-                  style={{width:"30px"}}
+                  className="rounded-full flex items-center justify-center text-xs sm:text-sm md:text-base"
+                  style={{width:"20px"}}
               />
             {/* </div> */}
              
